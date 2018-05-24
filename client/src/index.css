@@ -1,0 +1,70 @@
+/* Color Scheme */
+/* #ffffff -- White
+#00171F -- Rich Black
+#003459 -- Prussian Blue
+#007EA7 -- Cerulean
+#00A8E8 -- Vivid Cerulean */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #003459;
+    height: 75px;
+}
+
+.nav-logo {
+    font-size: 32px;
+    padding-left: 10px;
+}
+
+.nav-links {
+    line-height: 37px;
+}
+
+.nav-item {
+    display: inline;
+}
+
+.nav-item a {
+    font-size: 24px;
+    padding: 10px;
+}
+
+.nav-logo a, .nav-item a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.contact {
+    border: 1px solid #00171F;
+    width: 300px;
+    padding: 10px;
+}
+
+button {
+    width: 100px;
+    height: 40px;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-Submit {
+    background-color: #007EA7;
+}
+
+.button-Edit {
+    background-color: #007EA7;
+}
+
+.button-Delete {
+    background-color: #00171F;
+}
