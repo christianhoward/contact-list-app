@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
+const { formatPhone } = require('./helpers');
 const Contact = mongoose.model('contacts');
 
 exports.allContacts = async (req, res) => {
@@ -20,7 +21,7 @@ exports.addContact = async (req, res) => {
         firstname,
         lastname,
         email,
-        phone,
+        phone: formatPhone(phone),
         status
     });
     try {
@@ -34,7 +35,7 @@ exports.addContact = async (req, res) => {
 exports.updateContact = async (req, res) => {
     const id = req.params.id;
     const { firstname, lastname, email, phone, status } = req.body;
-    const contact = { firstname, lastname, email, phone, status };
+    const contact = { firstname, lastname, email, phone: formatPhone(phone), status };
     try {
         await Contact.findByIdAndUpdate(id, {$set: contact}, {new: true});
         res.send(contact);
