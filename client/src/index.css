@@ -61,10 +61,28 @@ button {
     background-color: #007EA7;
 }
 
+.button-Submit:hover {
+    background-color: #ffffff;
+    color: #007EA7;
+    border: 2px solid #007EA7;
+}
+
 .button-Edit {
     background-color: #007EA7;
 }
 
+.button-Edit:hover {
+    background-color: #ffffff;
+    color: #007EA7;
+    border: 2px solid #007EA7;
+}
+
 .button-Delete {
     background-color: #00171F;
+}
+
+.button-Delete:hover {
+    background-color: #ffffff;
+    color: #00171F;
+    border: 2px solid #00171F;
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import Contact from './Contact';
 import { fetchContacts, deleteContact } from '../actions';

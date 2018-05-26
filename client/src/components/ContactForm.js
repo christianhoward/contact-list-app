@@ -10,11 +10,11 @@ import Button from './Button';
 
 class ContactForm extends Component {
     renderFields() {
-        return _.map(formFields, ({ label, name, type, options, placeholder }) => {
+        return _.map(formFields, ({ label, name, type, options, placeholder, pattern }) => {
             return (
-                <Field key={name} component={ContactField} label={label} name={name} type={type} options={options} placeholder={placeholder} />
+                <Field key={name} component={ContactField} label={label} name={name} type={type} options={options} placeholder={placeholder} pattern={pattern} />
             );
-        })
+        });
     }
     onSubmit(contact) {
         if (contact._id) {
@@ -38,6 +38,27 @@ class ContactForm extends Component {
     }
 }
 
+function validate(values) {
+    const errors = {};
+    const { firstname, lastname, email, phone, status } = values;
+    if (!firstname || firstname.trim() === '') {
+        errors.firstname = 'Enter a first name.'
+    }
+    if (!lastname || lastname.trim() === '') {
+        errors.lastname = 'Enter a last name.'
+    }
+    if (!email || email.trim() === '') {
+        errors.email = 'Enter an e-mail address.'
+    }
+    if (!phone || phone.trim() === '') {
+        errors.phone = 'Enter a phone number.'
+    }
+    if (!status || status.trim() === '') {
+        errors.status = 'Enter a status.'
+    }
+    return errors;
+}
+
 function mapStateToProps(state, props) {
     return {
         initialValues: state.contacts.find(contact => contact._id === props.match.params.id)
@@ -45,5 +66,6 @@ function mapStateToProps(state, props) {
 }
 
 export default connect(mapStateToProps, { addContact, updateContact })(reduxForm({
+    validate,
     form: 'contactForm'
 })(ContactForm));
