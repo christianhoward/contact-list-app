@@ -1,28 +1,17 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import ContactList from './ContactList';
-import { fetchContacts } from '../actions';
 
 class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            searchText: '',
-            isModalOpen: false,
-            specificContact: []
+            searchText: ''
         } 
         this.filterContacts = this.filterContacts.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
-    }
-    componentDidMount() {
-        this.props.fetchContacts();
     }
     filterContacts(e) {
         this.setState({ searchText: e.target.value})
-    }
-    toggleModal(id) {
-        this.setState({ isModalOpen: !this.state.isModalOpen, specificContact: id !== '' ? this.props.contacts.find(contact => contact._id === id) : [] });
     }
     render() {
         return (
@@ -31,17 +20,13 @@ class Dashboard extends Component {
                 <ContactList 
                     contacts={this.props.contacts}
                     searchText={this.state.searchText} 
-                    toggleModal={this.toggleModal} 
-                    isModalOpen={this.state.isModalOpen} 
-                    specificContact={this.state.specificContact} 
+                    toggleModal={this.props.toggleModal} 
+                    isModalOpen={this.props.isModalOpen} 
+                    specificContact={this.props.specificContact} 
                 />
             </div>
         );
     }
 }
 
-function mapStateToProps({ contacts }) {
-    return { contacts };
-}
-
-export default connect(mapStateToProps, { fetchContacts })(Dashboard);
+export default Dashboard;
