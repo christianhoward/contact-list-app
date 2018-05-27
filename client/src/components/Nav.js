@@ -7,7 +7,7 @@ const Nav = () => (
             <Link to="/">Contact List App</Link>
         </div>
         <div className="nav-links">
-            <Link className="nav-link" to="/form"><i className="fas fa-plus-circle nav-item__icon"></i></Link>
+            <Link to="/form"><i className="fas fa-plus-circle nav-item__icon"></i></Link>
         </div>
     </div>
 );
