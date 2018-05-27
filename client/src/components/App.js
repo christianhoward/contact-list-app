@@ -13,11 +13,13 @@ class App extends Component {
         return (
             <div>
                 <BrowserRouter>
-                    <div className="container">
+                    <div>
                         <Nav />
-                        <Route exact path="/" component={Dashboard} />
-                        <Route exact path="/form" component={ContactForm} />
-                        <Route path="/form/:id" component={ContactForm} />
+                        <div className="container">
+                            <Route exact path="/" component={Dashboard} />
+                            <Route exact path="/form" component={ContactForm} />
+                            <Route path="/form/:id" component={ContactForm} />
+                        </div>
                     </div>
                 </BrowserRouter>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 
 import Contact from './Contact';
 import Modal from './Modal';
@@ -11,6 +12,7 @@ class ContactList extends Component {
     }
     handleDeleteContact(id) {
         this.props.deleteContact(id);
+        this.props.toggleModal('');
     }
     render() {
         const coverClass = this.props.isModalOpen ? 'modal-cover modal-cover-active' : 'modal-cover';
@@ -49,6 +51,8 @@ class ContactList extends Component {
                     isModalOpen={this.props.isModalOpen} 
                     specificContact={this.props.specificContact} 
                     toggleModal={this.props.toggleModal}
+                    deleteContact={this.handleDeleteContact.bind(this)}
+                    editContact={this.handleEditContact.bind(this)}
                 />
                 <div className={coverClass} onClick={() => this.props.toggleModal('')}></div>
             </div>
@@ -56,4 +60,4 @@ class ContactList extends Component {
     }
 }
 
-export default connect(null, { deleteContact })(ContactList);
+export default withRouter(connect(null, { deleteContact })(ContactList));
