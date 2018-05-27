@@ -16,7 +16,6 @@ class ContactList extends Component {
     }
     render() {
         const coverClass = this.props.isModalOpen ? 'modal-cover modal-cover-active' : 'modal-cover';
-        // const containerClass = this.props.isModalOpen ? 'modal-container modal-container-active' : 'modal-container';
         return (
             <div>
                 {this.props.contacts.filter(contact => {
@@ -38,22 +37,19 @@ class ContactList extends Component {
                 }).map(contact => {
                     return (
                         <div key={contact._id}>
-                            <Contact 
-                                toggleModal={this.props.toggleModal}
-                                deleteContact={this.handleDeleteContact.bind(this)}
-                                editContact={this.handleEditContact.bind(this)}
-                                contact={contact} 
-                            />
+                            <div className="contact" data-id={contact._id} onClick={() => this.props.toggleModal(contact._id)}>
+                                <div>{contact.firstname} {contact.lastname}</div>
+                            </div>
                         </div>
                     );
                 })}
-                <Modal
-                    isModalOpen={this.props.isModalOpen} 
-                    specificContact={this.props.specificContact} 
-                    toggleModal={this.props.toggleModal}
-                    deleteContact={this.handleDeleteContact.bind(this)}
-                    editContact={this.handleEditContact.bind(this)}
-                />
+                <Modal isModalOpen={this.props.isModalOpen}>
+                    <Contact
+                        specificContact={this.props.specificContact} 
+                        deleteContact={this.handleDeleteContact.bind(this)}
+                        editContact={this.handleEditContact.bind(this)}
+                    />
+                </Modal>
                 <div className={coverClass} onClick={() => this.props.toggleModal('')}></div>
             </div>
         );
