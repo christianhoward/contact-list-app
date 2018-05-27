@@ -17,7 +17,9 @@ class ContactList extends Component {
     render() {
         return (
             <div>
-                {this.props.contacts.sort(function(a,b) {
+                {this.props.contacts.filter(contact => {
+                   return contact.firstname.concat(` ${contact.lastname}`).toLowerCase().indexOf(this.props.searchText.toLowerCase()) !== -1;
+                }).sort(function(a,b) {
                     if (a.lastname === b.lastname) {
                         if (a.firstname > b.firstname) {
                             return 1;
