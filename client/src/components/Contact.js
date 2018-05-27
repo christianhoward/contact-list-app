@@ -2,8 +2,8 @@ import React from 'react';
 
 import Button from './Button';
 
-const Contact = ({ contact, deleteContact, editContact }) => (
-    <div className="contact">
+const Contact = ({ contact, deleteContact, editContact, toggleModal }) => (
+    <div className="contact" data-id={contact._id} onClick={() => toggleModal(contact._id)}>
         <div>{contact.firstname} {contact.lastname}</div>
         <div>email: {contact.email}</div>
         <div>phone number: {contact.phone}</div>

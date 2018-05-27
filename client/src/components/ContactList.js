@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Contact from './Contact';
-import { fetchContacts, deleteContact } from '../actions';
+import Modal from './Modal';
+import { deleteContact } from '../actions';
 
 class ContactList extends Component {
-    componentDidMount() {
-        this.props.fetchContacts();
-    }
     handleEditContact(id) {
         this.props.history.push(`/form/${id}`);
     }
@@ -15,6 +13,8 @@ class ContactList extends Component {
         this.props.deleteContact(id);
     }
     render() {
+        const coverClass = this.props.isModalOpen ? 'modal-cover modal-cover-active' : 'modal-cover';
+        // const containerClass = this.props.isModalOpen ? 'modal-container modal-container-active' : 'modal-container';
         return (
             <div>
                 {this.props.contacts.filter(contact => {
@@ -37,6 +37,7 @@ class ContactList extends Component {
                     return (
                         <div key={contact._id}>
                             <Contact 
+                                toggleModal={this.props.toggleModal}
                                 deleteContact={this.handleDeleteContact.bind(this)}
                                 editContact={this.handleEditContact.bind(this)}
                                 contact={contact} 
@@ -44,13 +45,15 @@ class ContactList extends Component {
                         </div>
                     );
                 })}
+                <Modal
+                    isModalOpen={this.props.isModalOpen} 
+                    specificContact={this.props.specificContact} 
+                    toggleModal={this.props.toggleModal}
+                />
+                <div className={coverClass} onClick={() => this.props.toggleModal('')}></div>
             </div>
         );
     }
 }
 
-function mapStateToProps({ contacts }) {
-    return { contacts };
-}
-
-export default connect(mapStateToProps, { fetchContacts, deleteContact })(ContactList);
+export default connect(null, { deleteContact })(ContactList);

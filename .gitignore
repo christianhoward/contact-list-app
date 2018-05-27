@@ -1,3 +1,6 @@
 node_modules
 
 config/dev.js
+
+client/public/favicon.ico
+client/src/App.test.js
