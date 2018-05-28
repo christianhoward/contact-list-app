@@ -4,11 +4,20 @@ import { withRouter } from "react-router-dom";
 
 import Contact from './Contact';
 import Modal from './Modal';
+import ContactForm from './ContactForm'
 import { deleteContact } from '../actions';
 
 class ContactList extends Component {
-    handleEditContact(id) {
-        this.props.history.push(`/form/${id}`);
+    constructor(props) {
+        super(props);
+        this.state = {
+            edit: false
+        }
+        this.handleEditContact = this.handleEditContact.bind(this);
+        this.handleDeleteContact = this.handleDeleteContact.bind(this);
+    }
+    handleEditContact(bool) {
+        this.setState({ edit: bool });
     }
     handleDeleteContact(id) {
         this.props.deleteContact(id);
@@ -44,13 +53,23 @@ class ContactList extends Component {
                     );
                 })}
                 <Modal isModalOpen={this.props.isModalOpen}>
-                    <Contact
-                        specificContact={this.props.specificContact} 
-                        deleteContact={this.handleDeleteContact.bind(this)}
-                        editContact={this.handleEditContact.bind(this)}
-                    />
+                    { this.state.edit ? 
+                        <ContactForm 
+                            {...this.props} 
+                            toggleModal={this.props.toggleModal} 
+                            editContact={this.handleEditContact}
+                        /> : 
+                        (this.props.specificContact.length === 0 ? 
+                            <ContactForm {...this.props} toggleModal={this.props.toggleModal} /> : 
+                            <Contact
+                                specificContact={this.props.specificContact} 
+                                deleteContact={this.handleDeleteContact}
+                                editContact={this.handleEditContact}
+                            /> 
+                        )
+                    }
                 </Modal>
-                <div className={coverClass} onClick={() => this.props.toggleModal('')}></div>
+                <div className={coverClass} onClick={() => {this.props.toggleModal(''); this.handleEditContact(false);}}></div>
             </div>
         );
     }

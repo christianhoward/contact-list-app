@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = () => (
+const Nav = ({ toggleModal }) => (
     <div className="nav">
         <div className="nav-logo">
             <Link to="/">Contact List App</Link>
         </div>
         <div className="nav-links">
-            <Link to="/form"><i className="fas fa-plus-circle nav-item__icon"></i></Link>
+            <i className="fas fa-plus-circle nav-item__icon" onClick={() => toggleModal('')}></i>
         </div>
     </div>
 );

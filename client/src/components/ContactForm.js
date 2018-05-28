@@ -19,19 +19,24 @@ class ContactForm extends Component {
     onSubmit(contact) {
         if (contact._id) {
             this.props.updateContact(contact);
-            this.props.history.push('/');
+            this.props.toggleModal('');
+            this.props.editContact(false);
         } else {
             this.props.addContact(contact);
-            this.props.history.push('/');
+            this.props.toggleModal('');
         }
     }
     render() {
         return (
             <div>
                 <form onSubmit={this.props.handleSubmit(props => this.onSubmit(props))}>
-                    <input type="hidden" name="_id" />
-                    {this.renderFields()}
-                    <Button value={'Submit'} onClick={null} />
+                    <div className="modal-container__demo">
+                        <input type="hidden" name="_id" />
+                        {this.renderFields()}
+                    </div>
+                    <div className="modal-container__buttons">
+                        <Button value={'Submit'} onClick={null} />
+                    </div>
                 </form>
             </div>
         );
@@ -61,7 +66,7 @@ function validate(values) {
 
 function mapStateToProps(state, props) {
     return {
-        initialValues: state.contacts.find(contact => contact._id === props.match.params.id)
+        initialValues: state.contacts.find(contact => contact._id === props.specificContact._id)
     }
 }
 
