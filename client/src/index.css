@@ -94,6 +94,11 @@ i {
     font-size: 20px;
 }
 
+.modal-container__form-demo {
+    padding: 10px;
+    font-size: 16px;
+}
+
 .modal-container__buttons {
     padding: 5px;
     text-align: center;
@@ -111,7 +116,7 @@ i {
     position: relative;
     display: flex;
     justify-content: space-between;
-    background-color: #003459;
+    background: linear-gradient(-45deg, #003459, #007EA7);
     height: 75px;
 }
 
@@ -200,4 +205,10 @@ button {
     background-color: #ffffff;
     color: #00171F;
     border: 2px solid #00171F;
+}
+
+input[type=text] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #00171F;
 }

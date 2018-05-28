@@ -29,8 +29,11 @@ class ContactForm extends Component {
     render() {
         return (
             <div>
+                <div className="modal-container__image">
+                    <img src="http://via.placeholder.com/200x200" className="prof" alt={`placeholder`} />
+                </div>
                 <form onSubmit={this.props.handleSubmit(props => this.onSubmit(props))}>
-                    <div className="modal-container__demo">
+                    <div className="modal-container__form-demo">
                         <input type="hidden" name="_id" />
                         {this.renderFields()}
                     </div>
