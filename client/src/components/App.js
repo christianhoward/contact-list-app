@@ -5,6 +5,7 @@ import * as actions from '../actions';
 
 import Nav from './Nav';
 import Dashboard from './Dashboard';
+import ContactForm from './ContactForm';
 
 class App extends Component {
     constructor(props) {
@@ -26,9 +27,11 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <Nav toggleModal={this.toggleModal}/>
+                        <Nav />
                         <div className="container">
                             <Route exact path="/" render={(props) => <Dashboard {...this.state} contacts={this.props.contacts} toggleModal={this.toggleModal} />} />
+                            <Route exact path="/form" component={ContactForm} />
+                            <Route path="/form/:id" component={ContactForm} />
                         </div>
                     </div>
                 </BrowserRouter>
