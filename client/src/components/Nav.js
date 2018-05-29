@@ -7,7 +7,9 @@ const Nav = ({ toggleModal }) => (
             <Link to="/">Contact List App</Link>
         </div>
         <div className="nav-links">
-            <i className="fas fa-plus-circle nav-item__icon" onClick={() => toggleModal('')}></i>
+            <Link to={{pathname: `/form`,
+          // this is the trick!
+          state: { modal: true }}}><i className="fas fa-plus-circle nav-item__icon"></i></Link>
         </div>
     </div>
 );

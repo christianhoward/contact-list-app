@@ -5,7 +5,7 @@ export default ({ input, name, label, type, options, placeholder, pattern, meta:
         case 'select':
             return (
                 <div>
-                    <label>{label}</label>
+                    <label>{label}</label><br/>
                     <select {...input}>
                         <option value="" disabled>Select {label}</option>
                         {
@@ -17,7 +17,7 @@ export default ({ input, name, label, type, options, placeholder, pattern, meta:
         case 'email':
             return (
                 <div>
-                    <label>{label}</label>
+                    <label>{label}</label><br/>
                     <input {...input} placeholder={placeholder} pattern={pattern} type={type} required />
                     <div style={{ marginBottom: '20px', color: 'red' }}>
                         {touched && error}
@@ -27,7 +27,7 @@ export default ({ input, name, label, type, options, placeholder, pattern, meta:
         case 'tel':
             return (
                 <div>
-                    <label>{label}</label>
+                    <label>{label}</label><br/>
                     <input {...input} placeholder={placeholder} pattern={pattern} type={type} required />
                     <div style={{ marginBottom: '20px', color: 'red' }}>
                         {touched && error}
@@ -37,7 +37,7 @@ export default ({ input, name, label, type, options, placeholder, pattern, meta:
         default:
             return (
                 <div>
-                    <label>{label}</label>
+                    <label>{label}</label><br/>
                     <input {...input} placeholder={placeholder} pattern={pattern} type={type} required />
                     <div style={{ marginBottom: '20px', color: 'red' }}>
                         {touched && error}

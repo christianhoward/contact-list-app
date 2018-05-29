@@ -14,7 +14,7 @@ const Contact = ({ specificContact, editContact, deleteContact }) => (
             <div>Status: {specificContact.status}</div>
         </div>
         <div className="modal-container__buttons">
-            <Button value={'Edit'} onClick={() => editContact(true)} />
+            <Button value={'Edit'} onClick={() => editContact(specificContact._id)} />
             <Button value={'Delete'} onClick={() => deleteContact(specificContact._id)} />
         </div>
     </div>

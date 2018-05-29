@@ -16,8 +16,9 @@ class ContactList extends Component {
         this.handleEditContact = this.handleEditContact.bind(this);
         this.handleDeleteContact = this.handleDeleteContact.bind(this);
     }
-    handleEditContact(bool) {
-        this.setState({ edit: bool });
+    handleEditContact(id) {
+        this.props.history.push(`/form/${id}`);
+        this.props.toggleModal('');
     }
     handleDeleteContact(id) {
         this.props.deleteContact(id);
@@ -53,23 +54,13 @@ class ContactList extends Component {
                     );
                 })}
                 <Modal isModalOpen={this.props.isModalOpen}>
-                    { this.state.edit ? 
-                        <ContactForm 
-                            {...this.props} 
-                            toggleModal={this.props.toggleModal} 
-                            editContact={this.handleEditContact}
-                        /> : 
-                        (this.props.specificContact.length === 0 ? 
-                            <ContactForm {...this.props} toggleModal={this.props.toggleModal} /> : 
-                            <Contact
-                                specificContact={this.props.specificContact} 
-                                deleteContact={this.handleDeleteContact}
-                                editContact={this.handleEditContact}
-                            /> 
-                        )
-                    }
+                    <Contact
+                        specificContact={this.props.specificContact} 
+                        deleteContact={this.handleDeleteContact}
+                        editContact={this.handleEditContact}
+                    /> 
                 </Modal>
-                <div className={coverClass} onClick={() => {this.props.toggleModal(''); this.handleEditContact(false);}}></div>
+                <div className={coverClass} onClick={() => this.props.toggleModal('')}></div>
             </div>
         );
     }
