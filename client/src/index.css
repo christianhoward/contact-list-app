@@ -1,4 +1,4 @@
-/* Color Scheme */
+/* Color Scheme - https://coolors.co/ffffff-00171f-003459-007ea7-00a8e8 */
 /* #ffffff -- White
 #00171F -- Rich Black
 #003459 -- Prussian Blue
@@ -207,8 +207,32 @@ button {
     border: 2px solid #00171F;
 }
 
-input[type=text] {
+label {
+    font-size: 16px;
+}
+
+input[type=text], input[type=email], input[type=tel] {
     background: transparent;
     border: none;
     border-bottom: 1px solid #00171F;
+    width: 100%;
+    font-size: 24px;
+}
+
+select {
+    background: linear-gradient(-45deg, #003459, #007EA7);;
+    color: white;
+    border: none;
+    font-size: 18px;
+    height: 29px;
+    padding: 5px;
+    min-width: 25%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.form {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #00171F;
 }
